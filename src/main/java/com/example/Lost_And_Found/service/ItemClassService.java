@@ -1,6 +1,7 @@
 package com.example.Lost_And_Found.service;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class ItemClassService {
                 }
             }
             itemData.setImage(listImages);
+            itemData.setCreatedAt(Instant.now());
         }
         itemClassRepo.save(itemData);
     }

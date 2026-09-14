@@ -8,18 +8,21 @@ import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-@Document(collection = "lost-report")
+
+@Document(collection = "user-lost-report")
 @Getter
 @Setter
-public class ItemClass {
+public class ItemClass_User {
 
     @Id
-    private String id;
+    private String Id;
 
-    private String name;
-    private String phoneNumber;
+    private String user_name;
+    private String user_phoneNUmber;
 
     @CreatedDate
-    private Instant createdAt;
-    private List<byte[]> image;
+     private Instant user_report_createdTime;
+
+    private List<byte[]> userImageList;
+
 }
