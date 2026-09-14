@@ -18,6 +18,7 @@ public class ItemClass_User {
     private String Id;
 
     private String user_name;
+    private String user_description;
     private String user_phoneNUmber;
 
     @CreatedDate
