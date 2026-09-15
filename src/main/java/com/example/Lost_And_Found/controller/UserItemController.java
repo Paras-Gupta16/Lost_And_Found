@@ -36,8 +36,9 @@ public class UserItemController {
             ItemClass_User itemClassUser = objectMapper
                     .readValue(item,ItemClass_User.class);
             itemClassUserService.user_ItemDetail(itemClassUser,userImageData);
+            log.info("User-Item_Saved:"+itemClassUser.getId());
             return ResponseEntity.status(HttpStatus.OK)
-                                 .body("Data uploaded successfully");
+                                 .body("Data uploaded successfully"+"\n"+"Id for reference:"+itemClassUser.getId());
         }catch (Exception e){
             log.error("Error in uploading the data:\t"+e.getMessage());
             return ResponseEntity

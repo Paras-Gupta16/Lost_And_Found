@@ -32,4 +32,17 @@ public class ItemClass_UserService {
         }
         itemClassUserRepo.save(itemClassUser);
     }
+
+    public void user_UpdateImage(MultipartFile[] newImageData,String Id) throws IOException {
+        ItemClass_User itemClassUser = itemClassUserRepo.findById(Id).orElse(null);
+        if(itemClassUser!=null){
+            List<byte[]> user_ImageDataList = itemClassUser.getUserImageList();
+            user_ImageDataList.clear();
+            for(MultipartFile user_imageData:newImageData){
+                user_ImageDataList.add(user_imageData.getBytes());
+            }
+            itemClassUser.setUserImageList(user_ImageDataList);
+            itemClassUserRepo.save(itemClassUser);
+        }
+    }
 }

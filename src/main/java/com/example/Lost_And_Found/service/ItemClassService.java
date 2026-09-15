@@ -7,6 +7,9 @@ import java.util.List;
 
 import com.example.Lost_And_Found.entity.ItemClass;
 import com.example.Lost_And_Found.repository.ItemClassRepo;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,6 +34,31 @@ public class ItemClassService {
             itemData.setCreatedAt(Instant.now());
         }
         itemClassRepo.save(itemData);
+    }
+
+    public void updateImage(MultipartFile[] imageData,String id) throws IOException {
+        ItemClass itemClass = itemClassRepo.findById(id).orElse(null);
+        if(itemClass!=null) {
+            List<byte[]> imageList = itemClass.getImage();
+            imageList.clear();
+            for (MultipartFile newImageData : imageData) {
+                if (newImageData != null&&!newImageData.isEmpty()) {
+                    imageList.add(newImageData.getBytes());
+                }
+            }
+            itemClass.setImage(imageList);
+            itemClassRepo.save(itemClass);
+        }
+    }
+
+    public ItemClass displayTheReport(String id){
+        ItemClass itemClass = itemClassRepo.findById(id).orElse(null);
+        return itemClass;
+    }
+
+    public Page<ItemClass> displayAllTheData(int page, int size) throws Exception {
+        Pageable pageable = PageRequest.of(page,size);
+        return itemClassRepo.findAll(pageable);
     }
 
 }
