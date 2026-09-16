@@ -46,4 +46,20 @@ public class UserItemController {
                     .body("Error in uploading the data");
         }
     }
+
+    @PostMapping(value = "/user/new/upload",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<String> user_UploadNewImage(MultipartFile[] user_newImageData,String user_Id){
+        try{
+            itemClassUserService.user_UpdateImage(user_newImageData,user_Id);
+            log.info("Image update successfully for Id:"+user_Id);
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body("Image Update successfully");
+        }catch (Exception e){
+            log.error("Error in updating the image:"+e.getMessage()+"Id for reference:"+user_Id);
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error in Uploading the image");
+        }
+    }
 }

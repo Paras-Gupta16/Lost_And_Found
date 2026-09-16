@@ -37,7 +37,7 @@ public class ItemClassService {
     }
 
     public void updateImage(MultipartFile[] imageData,String id) throws IOException {
-        ItemClass itemClass = itemClassRepo.findById(id).orElse(null);
+        ItemClass itemClass = itemClassRepo.findById(id).orElseThrow(null);
         if(itemClass!=null) {
             List<byte[]> imageList = itemClass.getImage();
             imageList.clear();
@@ -52,7 +52,7 @@ public class ItemClassService {
     }
 
     public ItemClass displayTheReport(String id){
-        ItemClass itemClass = itemClassRepo.findById(id).orElse(null);
+        ItemClass itemClass = itemClassRepo.findById(id).orElseThrow(null);
         return itemClass;
     }
 
