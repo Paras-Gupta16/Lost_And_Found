@@ -26,4 +26,6 @@ public class ItemClass_User {
 
     private List<byte[]> userImageList;
 
+    private float[] user_descriptionEmbeddings;
+
 }

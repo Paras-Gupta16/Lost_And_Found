@@ -23,4 +23,6 @@ public class ItemClass {
     @CreatedDate
     private Instant createdAt;
     private List<byte[]> image;
+
+    private float[] descriptionEmbedding;
 }
